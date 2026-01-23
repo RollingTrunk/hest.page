@@ -6,7 +6,7 @@ description: Project conventions and rules for hest.page
 
 ## Icons
 
-**Always use Radix UI Icons** for all icons in this project.
+**Default to Radix UI Icons** for all icons in this project.
 
 - Package: `@radix-ui/react-icons`
 - Documentation: https://www.radix-ui.com/icons
