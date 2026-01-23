@@ -2,6 +2,8 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import ClientBetaForm from "@/components/Home/ClientBetaForm";
 import { StarFilledIcon } from "@radix-ui/react-icons";
+import IconOverlay from "@/components/IconOverlay/IconOverlay";
+
 
 export default function Home() {
   return (
@@ -50,14 +52,17 @@ export default function Home() {
         <section className={`${styles.section} ${styles.features}`}>
           {/* Feature 1: Calendar - Image Left */}
           <div className={styles.featureRow}>
-            <div className={styles.featureImage}>
-              <Image 
-                src="/feature-calendar-v2.png" 
-                alt="Calendar planning" 
-                width={500} 
-                height={500}
-                style={{ width: '100%', height: 'auto', display: 'block' }}
-              />
+            <div className={styles.featureImageWrapper}>
+              <div className={styles.featureImage}>
+                <Image 
+                  src="/feature-calendar-v2.png" 
+                  alt="Calendar planning" 
+                  width={500} 
+                  height={500}
+                  style={{ width: '100%', height: 'auto', display: 'block' }}
+                />
+              </div>
+              <IconOverlay type="calendar" position="right" />
             </div>
             <div className={styles.featureContent}>
               <h3 className={styles.featureTitle}>Manage all your calendars</h3>
@@ -70,14 +75,17 @@ export default function Home() {
 
           {/* Feature 2: Tasks - Image Right */}
           <div className={`${styles.featureRow} ${styles.featureRowReverse}`}>
-            <div className={styles.featureImage}>
-              <Image 
-                src="/feature-tasks-v2.png" 
-                alt="Family task management" 
-                width={500} 
-                height={500}
-                style={{ width: '100%', height: 'auto', display: 'block' }}
-              />
+            <div className={styles.featureImageWrapper}>
+              <div className={styles.featureImage}>
+                <Image 
+                  src="/feature-tasks-v2.png" 
+                  alt="Family task management" 
+                  width={500} 
+                  height={500}
+                  style={{ width: '100%', height: 'auto', display: 'block' }}
+                />
+              </div>
+              <IconOverlay type="tasks" position="left" />
             </div>
             <div className={styles.featureContent}>
               <h3 className={styles.featureTitle}>Organize family tasks</h3>
@@ -90,14 +98,17 @@ export default function Home() {
 
           {/* Feature 3: Meals - Image Left */}
           <div className={styles.featureRow}>
-            <div className={styles.featureImage}>
-              <Image 
-                src="/feature-meals-v2.png" 
-                alt="Meal planning" 
-                width={500} 
-                height={500}
-                style={{ width: '100%', height: 'auto', display: 'block' }}
-              />
+            <div className={styles.featureImageWrapper}>
+              <div className={styles.featureImage}>
+                <Image 
+                  src="/feature-meals-v2.png" 
+                  alt="Meal planning" 
+                  width={500} 
+                  height={500}
+                  style={{ width: '100%', height: 'auto', display: 'block' }}
+                />
+              </div>
+              <IconOverlay type="meals" position="right" />
             </div>
             <div className={styles.featureContent}>
               <h3 className={styles.featureTitle}>Plan your meals</h3>
@@ -110,14 +121,17 @@ export default function Home() {
 
           {/* Feature 4: Records - Image Right */}
           <div className={`${styles.featureRow} ${styles.featureRowReverse}`}>
-            <div className={styles.featureImage}>
-              <Image 
-                src="/feature-records-v2.png" 
-                alt="Record keeping" 
-                width={500} 
-                height={500}
-                style={{ width: '100%', height: 'auto', display: 'block' }}
-              />
+            <div className={styles.featureImageWrapper}>
+              <div className={styles.featureImage}>
+                <Image 
+                  src="/feature-records-v2.png" 
+                  alt="Record keeping" 
+                  width={500} 
+                  height={500}
+                  style={{ width: '100%', height: 'auto', display: 'block' }}
+                />
+              </div>
+              <IconOverlay type="records" position="left" />
             </div>
             <div className={styles.featureContent}>
               <h3 className={styles.featureTitle}>Keep track of records</h3>

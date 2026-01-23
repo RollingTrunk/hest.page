@@ -135,11 +135,31 @@
   direction: ltr;
 }
 
+/* Mobile-first defaults for Feature Images */
+.featureImageWrapper {
+  position: relative;
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto;
+}
+
 .featureImage {
   border-radius: var(--radius-xl);
   overflow: hidden;
   box-shadow: var(--shadow-md);
-  max-width: 250px;
+  max-width: 500px;
+  width: 100%;
+}
+
+@media (min-width: 1025px) {
+  .featureImageWrapper {
+    max-width: 250px;
+    margin: 0;
+  }
+  
+  .featureImage {
+    max-width: 250px;
+  }
 }
 
 .featureContent {
@@ -198,11 +218,6 @@
 
   .featureRowReverse {
     direction: ltr;
-  }
-
-  .featureImage {
-    max-width: 500px;
-    margin: 0 auto;
   }
 
   .featureContent {

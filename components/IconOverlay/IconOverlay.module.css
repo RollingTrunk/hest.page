@@ -1,0 +1,112 @@
+.overlay {
+  position: absolute;
+  bottom: -20px;
+  width: 80px;
+  height: 80px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out;
+}
+.overlay:hover {
+  transform: scale(1.1);
+}
+.overlay-left {
+  left: -20px;
+}
+@media (min-width: 768px) {
+  .overlay-right {
+    right: -20px;
+  }
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+  color: var(--color-primary, #000);
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+@keyframes fillDay {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 1; }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes checkMark {
+  0% { stroke-dashoffset: 24; opacity: 0; }
+  20% { opacity: 1; }
+  100% { stroke-dashoffset: 0; opacity: 1; }
+}
+
+@keyframes linesReveal {
+  0% { width: 0; opacity: 0; }
+  100% { width: 14px; opacity: 1; }
+}
+
+@keyframes folderPop {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+@keyframes steamRise {
+  0% { transform: translateY(0); opacity: 0; }
+  50% { opacity: 0.6; }
+  100% { transform: translateY(-10px); opacity: 0; }
+}
+
+/* Specific Icon Animations */
+
+.calDay {
+  animation: fillDay 2s ease-in-out infinite;
+}
+
+/* Task: Clipboard checks */
+.taskIcon .checkPath {
+  stroke-dasharray: 24;
+  stroke-dashoffset: 24;
+  animation: checkMark 1.5s ease-out infinite;
+  animation-delay: 1s;
+}
+.taskIcon .linePath {
+    animation: linesReveal 1.5s ease-out infinite;
+    animation-fill-mode: forwards;
+}
+
+/* Meals: Steam rising */
+.mealsIcon .steam1 {
+  animation: steamRise 2s infinite;
+  animation-delay: 0s;
+}
+.mealsIcon .steam2 {
+  animation: steamRise 2s infinite;
+  animation-delay: 0.5s;
+}
+.mealsIcon .steam3 {
+  animation: steamRise 2s infinite;
+  animation-delay: 1s;
+}
+
+/* Records: Folder popping */
+.recordsIcon {
+  animation: float 4s ease-in-out infinite;
+}
+
+.recordsIcon .folderFront {
+  transform-origin: bottom center;
+  animation: folderPop 3s ease-in-out infinite;
+}
