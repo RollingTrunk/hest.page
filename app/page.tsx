@@ -23,8 +23,8 @@ export default function Home() {
               </h1>
               
               <p className={styles.heroSubtitle}>
-                A simple, fast, and private way to manage your tasks, goals, and habits. 
-                Take control of your productivity with the app designed to work for you.
+                The ultimate productivity platform for families. Effortlessly manage 
+                tasks, schedules, meal planning, and record tracking in one beautiful, private space.
               </p>
               
               <ClientBetaForm />

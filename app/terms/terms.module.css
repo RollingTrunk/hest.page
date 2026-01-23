@@ -1,0 +1,68 @@
+.termsContainer {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 120px var(--spacing-lg) var(--spacing-xxl);
+  line-height: 1.6;
+}
+
+.header {
+  margin-bottom: var(--spacing-xl);
+  border-bottom: 2px solid var(--color-primary-subtle);
+  padding-bottom: var(--spacing-lg);
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: var(--spacing-xs);
+  letter-spacing: -0.02em;
+}
+
+.lastUpdated {
+  color: var(--color-text-secondary);
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.section {
+  margin-bottom: var(--spacing-xl);
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: var(--spacing-md);
+  margin-top: var(--spacing-xl);
+}
+
+.text {
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-md);
+  font-size: 1.05rem;
+}
+
+.list {
+  margin-bottom: var(--spacing-md);
+  padding-left: var(--spacing-lg);
+  color: var(--color-text-secondary);
+}
+
+.listItem {
+  margin-bottom: var(--spacing-sm);
+}
+
+@media (max-width: 768px) {
+  .termsContainer {
+    padding-top: 100px;
+  }
+  
+  .title {
+    font-size: 2rem;
+  }
+  
+  .sectionTitle {
+    font-size: 1.25rem;
+  }
+}
