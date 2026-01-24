@@ -35,6 +35,15 @@ export default function Home() {
             {/* Right Column - Robot Mascot */}
             <div className={styles.heroVisual}>
               <div className={styles.screenshotContainer}>
+                <div className={styles.calendarLineArt}>
+                  <Image
+                    src="/hero-calendar.png"
+                    alt="Calendar background"
+                    width={400}
+                    height={400}
+                    style={{ width: '100%', height: 'auto', display: 'block' }}
+                  />
+                </div>
                 <Image 
                   src="/robot.png" 
                   alt="Hest Robot Mascot" 

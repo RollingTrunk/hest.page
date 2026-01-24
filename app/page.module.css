@@ -105,6 +105,17 @@
   filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.15));
 }
 
+.calendarLineArt {
+  position: absolute;
+  top: -20%;
+  left: -30%;
+  width: 120%;
+  height: auto;
+  opacity: 0.6;
+  z-index: -1;
+  transform: rotate(-10deg);
+}
+
 /* Features Section */
 .features {
   background: var(--color-bg);
