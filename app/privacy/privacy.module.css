@@ -27,6 +27,7 @@
 
 .section {
   margin-bottom: var(--spacing-xl);
+  scroll-margin-top: 100px;
 }
 
 .sectionTitle {
@@ -35,6 +36,18 @@
   color: var(--color-text);
   margin-bottom: var(--spacing-md);
   margin-top: var(--spacing-xl);
+}
+
+.subSection {
+  margin-bottom: var(--spacing-lg);
+}
+
+.subSectionTitle {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: var(--spacing-sm);
+  margin-top: var(--spacing-lg);
 }
 
 .text {
@@ -60,6 +73,50 @@
 
 .listItem {
   margin-bottom: var(--spacing-sm);
+}
+
+/* Table Styles */
+.tableWrapper {
+  overflow-x: auto;
+  margin-bottom: var(--spacing-lg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+}
+
+.th,
+.td {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-bottom: 1px solid var(--color-border);
+  text-align: left;
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+  vertical-align: top;
+}
+
+.th {
+  background-color: var(--color-background-subtle);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.td:first-child,
+.th:first-child {
+  border-left: none;
+}
+
+.td:last-child,
+.th:last-child {
+  border-right: none;
+}
+
+.table tr:last-child .td {
+  border-bottom: none;
 }
 
 @media (max-width: 768px) {
