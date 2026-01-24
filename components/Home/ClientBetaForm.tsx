@@ -14,6 +14,7 @@ export default function ClientBetaForm() {
     const formData = new URLSearchParams();
     formData.append('email', email);
     formData.append('userGroup', 'hest-beta');
+    formData.append('mailingLists', 'cmkrofa5203yy0ixm54zlhszl');
 
     try {
       const response = await fetch('https://app.loops.so/api/newsletter-form/cmkr4w5nk00q10i09zoamrr03', {
