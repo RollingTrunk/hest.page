@@ -49,6 +49,15 @@
   color: var(--color-text-secondary);
 }
 
+.link {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
 .listItem {
   margin-bottom: var(--spacing-sm);
 }

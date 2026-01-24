@@ -73,8 +73,8 @@ export default function PrivacyPage() {
           If you have any questions about this Privacy Policy, please contact us at:
         </p>
         <p className={styles.text}>
-          <strong>Hest App</strong><br />
-          Email: privacy@hest.page
+          <strong>Rolling Trunk LLC</strong><br />
+          Email: <a href="mailto:legal@rollingtrunk.com" className={styles.link}>legal@rollingtrunk.com</a>
         </p>
       </section>
     </main>
