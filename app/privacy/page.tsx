@@ -11,7 +11,7 @@ export default function PrivacyPage() {
       <section className={styles.section}>
         <h2 className={styles.sectionTitle}>1. Introduction</h2>
         <p className={styles.text}>
-          Hest ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how your personal information is collected, used, and disclosed by Hest.
+          Rolling Trunk LLC ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how your personal information is collected, used, and disclosed by Hest.
         </p>
       </section>
 
