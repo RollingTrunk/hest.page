@@ -10,12 +10,31 @@ export default function ClientBetaForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('loading');
-    
-    // Simulate API call
-    setTimeout(() => {
-      setStatus('success');
-      setEmail('');
-    }, 1000);
+
+    const formData = new URLSearchParams();
+    formData.append('email', email);
+    formData.append('userGroup', 'hest-beta');
+
+    try {
+      const response = await fetch('https://app.loops.so/api/newsletter-form/cmkr4w5nk00q10i09zoamrr03', {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      });
+
+      if (response.ok) {
+        setStatus('success');
+        setEmail('');
+      } else {
+        console.error('Form submission failed:', response.statusText);
+        setStatus('error');
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      setStatus('error');
+    }
   };
 
   if (status === 'success') {
