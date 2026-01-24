@@ -64,7 +64,7 @@ export default function Home() {
             <div className={styles.featureImageWrapper}>
               <div className={styles.featureImage}>
                 <Image 
-                  src="/feature-calendar-v2.png" 
+                  src="/feature-calendar-v3.png" 
                   alt="Calendar planning" 
                   width={500} 
                   height={500}
@@ -87,7 +87,7 @@ export default function Home() {
             <div className={styles.featureImageWrapper}>
               <div className={styles.featureImage}>
                 <Image 
-                  src="/feature-tasks-v2.png" 
+                  src="/feature-tasks-v3.png" 
                   alt="Family task management" 
                   width={500} 
                   height={500}
@@ -110,7 +110,7 @@ export default function Home() {
             <div className={styles.featureImageWrapper}>
               <div className={styles.featureImage}>
                 <Image 
-                  src="/feature-meals-v2.png" 
+                  src="/feature-meals-v3.png" 
                   alt="Meal planning" 
                   width={500} 
                   height={500}
@@ -133,7 +133,7 @@ export default function Home() {
             <div className={styles.featureImageWrapper}>
               <div className={styles.featureImage}>
                 <Image 
-                  src="/feature-records-v2.png" 
+                  src="/feature-records-v3.png" 
                   alt="Record keeping" 
                   width={500} 
                   height={500}
