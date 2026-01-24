@@ -16,10 +16,10 @@
 .overlay:hover {
   transform: scale(1.1);
 }
-.overlay-left {
-  left: -20px;
-}
 @media (min-width: 768px) {
+  .overlay-left {
+    left: -20px;
+  }
   .overlay-right {
     right: -20px;
   }

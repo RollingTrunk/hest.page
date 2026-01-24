@@ -2,12 +2,26 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
+import { HamburgerMenuIcon, Cross1Icon } from '@radix-ui/react-icons';
 import styles from './Layout.module.css';
 
 export default function Header() {
   const [hoveredRect, setHoveredRect] = useState({ left: 0, width: 0, opacity: 0 });
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.classList.add('mobile-menu-open');
+    } else {
+      document.body.classList.remove('mobile-menu-open');
+    }
+    // Cleanup on unmount
+    return () => {
+      document.body.classList.remove('mobile-menu-open');
+    };
+  }, [isMobileMenuOpen]);
 
   const handleMouseEnter = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (!navRef.current) return;
@@ -53,7 +67,42 @@ export default function Header() {
             <Link href="/privacy" className={styles.navLink} onMouseEnter={handleMouseEnter}>Privacy</Link>
           </nav>
           <Link href="/#signup" className={styles.headerCta}>Join Beta</Link>
+
+          <button 
+            className={styles.hamburgerBtn}
+            onClick={() => setIsMobileMenuOpen(true)}
+            aria-label="Open Menu"
+          >
+            <HamburgerMenuIcon width={24} height={24} />
+          </button>
         </div>
+      </div>
+
+      {/* Mobile Menu & Overlay */}
+      <div 
+        className={`${styles.overlay} ${isMobileMenuOpen ? styles.overlayVisible : ''}`} 
+        onClick={() => setIsMobileMenuOpen(false)}
+      />
+      
+      <div className={styles.mobileMenu}>
+        <div className={styles.mobileMenuHeader}>
+          <button 
+            className={styles.closeBtn}
+            onClick={() => setIsMobileMenuOpen(false)}
+            aria-label="Close Menu"
+          >
+            <Cross1Icon width={24} height={24} />
+          </button>
+        </div>
+        
+        <nav className={styles.mobileNavLinks}>
+          <Link href="/" className={styles.mobileNavLink} onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
+          <Link href="/support" className={styles.mobileNavLink} onClick={() => setIsMobileMenuOpen(false)}>Support</Link>
+          <Link href="/terms" className={styles.mobileNavLink} onClick={() => setIsMobileMenuOpen(false)}>Terms</Link>
+          <Link href="/privacy" className={styles.mobileNavLink} onClick={() => setIsMobileMenuOpen(false)}>Privacy</Link>
+        </nav>
+
+        <Link href="/#signup" className={styles.mobileCta} onClick={() => setIsMobileMenuOpen(false)}>Join Beta</Link>
       </div>
     </header>
   );

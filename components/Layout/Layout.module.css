@@ -140,20 +140,118 @@
 /* Responsive */
 @media (max-width: 768px) {
   .nav {
-    gap: var(--spacing-md);
+    display: none;
   }
 
   .headerCta {
     display: none;
   }
 
-  .navLink {
-    font-size: 0.85rem;
+  .hamburgerBtn {
+    display: block;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--spacing-sm);
+    margin-right: -8px; /* Offset padding alignment */
+    color: var(--color-text);
+    z-index: 101;
   }
 
-  .footerLinks {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: var(--spacing-lg);
+  .logoContainer {
+    z-index: 101; /* Keep logo clickable if needed, or let it slide */
   }
+}
+
+@media (min-width: 769px) {
+  .hamburgerBtn {
+    display: none;
+  }
+  
+  .mobileMenu {
+    display: none;
+  }
+}
+
+.mobileMenu {
+  position: absolute;
+  top: 0;
+  right: -300px;
+  width: 300px;
+  height: 100vh;
+  background: var(--color-bg);
+  border-left: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-md) var(--spacing-lg);
+  overflow-y: auto;
+  justify-content: space-between;
+  z-index: 200; /* Ensure high z-index */
+  box-shadow: -5px 0 20px rgba(0,0,0,0.1); /* Add shadow for depth */
+}
+
+.mobileMenuHeader {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 40px; /* Matches Logo container height (40px) */
+  margin-bottom: var(--spacing-xl);
+}
+
+.closeBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--spacing-sm);
+  margin-right: 4px; 
+  color: var(--color-text);
+}
+
+.mobileNavLinks {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  flex: 1;
+}
+
+.mobileNavLink {
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  transition: color var(--transition-fast);
+}
+
+.mobileNavLink:hover {
+  color: var(--color-text);
+}
+
+.mobileCta {
+  margin-bottom: var(--spacing-xxl);
+  text-align: center;
+  padding: var(--spacing-md);
+  background: var(--color-text);
+  color: var(--color-bg);
+  border-radius: var(--radius-pill);
+  font-weight: 600;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(2px);
+  z-index: 99; /* Below header, above content? wait. Header is 100. */
+  /* If Overlay is inside Header, z-index relates to header children. */
+  /* If Header is 100, Overlay should be behind menu but above interaction. */
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.overlayVisible {
+  opacity: 1;
+  pointer-events: auto;
 }

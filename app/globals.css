@@ -66,6 +66,15 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+body.mobile-menu-open {
+  transform: translateX(-300px);
+  overflow: visible; /* Allow the menu (positioned outside) to be seen */
+  height: 100vh;
+  position: fixed;
+  width: 100%;
 }
 
 * {
