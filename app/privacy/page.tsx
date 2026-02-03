@@ -73,7 +73,7 @@ export default function PrivacyPage() {
         
         <div id="personal-information-you-disclose-to-us" className={styles.subSection}>
           <h3 className={styles.subSectionTitle}>Personal information you disclose to us</h3>
-          <p className={styles.text}><strong>In Short:</strong> We collect personal information that you provide to us.</p>
+          <p className={styles.text}><strong>In Short:</strong> We value your privacy and will only collect personal information that you provide to us.</p>
           <p className={styles.text}>We collect personal information that you voluntarily provide to us when you register on the Services, express an interest in obtaining information about us or our products and Services, when you participate in activities on the Services, or otherwise when you contact us.</p>
           <p className={styles.text}><strong>Personal Information Provided by You.</strong> The personal information that we collect depends on the context of your interactions with us and the Services, the choices you make, and the products and features you use. The personal information we collect may include the following:</p>
           <ul className={styles.list}>
