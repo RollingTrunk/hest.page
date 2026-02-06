@@ -25,7 +25,7 @@ export default function Home() {
               </h1>
               
               <p className={styles.heroSubtitle}>
-                The ultimate productivity platform for families. Effortlessly manage 
+                The ultimate productivity platform for households. Effortlessly manage 
                 tasks, schedules, meal planning, and record tracking in one beautiful, private space.
               </p>
               
@@ -77,7 +77,7 @@ export default function Home() {
               <h3 className={styles.featureTitle}>Manage all your calendars</h3>
               <p className={styles.featureText}>
                 Import and sync multiple calendars in one place. Whether it&apos;s work, personal, 
-                or family events, see everything at a glance and never miss an important date.
+                or household events, see everything at a glance and never miss an important date.
               </p>
             </div>
           </div>
@@ -88,7 +88,7 @@ export default function Home() {
               <div className={styles.featureImage}>
                 <Image 
                   src="/feature-tasks-v3.png" 
-                  alt="Family task management" 
+                  alt="Household task management" 
                   width={500} 
                   height={500}
                   style={{ width: '100%', height: 'auto', display: 'block' }}
@@ -97,9 +97,9 @@ export default function Home() {
               <IconOverlay type="tasks" position="left" />
             </div>
             <div className={styles.featureContent}>
-              <h3 className={styles.featureTitle}>Organize family tasks</h3>
+              <h3 className={styles.featureTitle}>Organize household tasks</h3>
               <p className={styles.featureText}>
-                Create tasks and assign them to family members. Keep everyone accountable 
+                Create tasks and assign them to household members. Keep everyone accountable 
                 and working together to keep your household running smoothly.
               </p>
             </div>

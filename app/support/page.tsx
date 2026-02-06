@@ -18,7 +18,7 @@ const faqs = [
   },
   {
     question: "Is my data secure?",
-    answer: "Security is our top priority. We use industry-standard encryption to protect your data both in transit and at rest. Your personal information is never shared with third parties without your explicit consent."
+    answer: "Security is our top priority and we care about your privacy. We use industry-standard encryption to protect your data both in transit and at rest. Your personal information is never shared with third parties without your explicit consent."
   },
   {
     question: "Can I import data from other apps?",

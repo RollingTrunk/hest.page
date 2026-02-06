@@ -18,9 +18,9 @@ export default function Footer() {
               <Image src="/hest.svg" alt="Hest Logo" width={40} height={40} />
               <span className={styles.footerLogoText}>HEST</span>
             </Link>
-            <p className={styles.footerTagline}>Family life, streamlined.</p>
+            <p className={styles.footerTagline}>Household management, streamlined.</p>
             <p className={styles.footerDescription}>
-              Master your household's rhythm. Empowering families to take full control of their schedules, tasks, and shared life.
+              Master your household's rhythm. Empowering households to take full control of their schedules, tasks, and shared life.
             </p>
             
             {/* Social Links */}

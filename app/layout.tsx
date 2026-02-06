@@ -27,16 +27,16 @@ export const metadata: Metadata = {
     default: "Hest - Organize your life",
     template: "%s | Hest",
   },
-  description: "Hest is the ultimate productivity platform for families. Manage shared calendars, tasks, meal plans, and important records in one beautiful, private space.",
+  description: "Hest is the ultimate productivity platform for households. Manage shared calendars, tasks, meal plans, and important records in one beautiful, private space.",
   applicationName: "Hest",
   authors: [{ name: "Hest Team" }],
-  keywords: ["family organizer", "shared calendar", "task management", "meal planner", "home records", "productivity app", "family app"],
+  keywords: ["household organizer", "shared calendar", "task management", "meal planner", "home records", "productivity app", "household app"],
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://hest.page",
     title: "Hest - Organize your life",
-    description: "Hest is the ultimate productivity platform for families. Manage shared calendars, tasks, meal plans, and important records in one beautiful, private space.",
+    description: "Hest is the ultimate productivity platform for households. Manage shared calendars, tasks, meal plans, and important records in one beautiful, private space.",
     siteName: "Hest",
     images: [
       {
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary",
     title: "Hest - Organize your life",
-    description: "Hest is the ultimate productivity platform for families.",
+    description: "Hest is the ultimate productivity platform for households.",
     images: ["/og-image.png"],
   },
 };
@@ -66,7 +66,7 @@ const jsonLd = {
     "price": "0",
     "priceCurrency": "USD"
   },
-  "description": "The ultimate productivity platform for families. Manage shared calendars, tasks, meal plans, and important records.",
+  "description": "The ultimate productivity platform for households. Manage shared calendars, tasks, meal plans, and important records.",
   "aggregateRating": {
     "@type": "AggregateRating",
     "ratingValue": "4.8",
