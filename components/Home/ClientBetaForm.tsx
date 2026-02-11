@@ -41,7 +41,7 @@ export default function ClientBetaForm() {
   if (status === 'success') {
     return (
       <div className={styles.successMessage}>
-        <p>🎉 You&apos;re on the list!</p>
+        <p>🎉 You&apos;re on the list! Please check your inbox (and spam folder) for a confirmation email.</p>
         <button 
           onClick={() => setStatus('idle')} 
           className={styles.resetButton}
