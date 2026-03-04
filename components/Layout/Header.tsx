@@ -66,7 +66,7 @@ export default function Header() {
             <Link href="/terms" className={styles.navLink} onMouseEnter={handleMouseEnter}>Terms</Link>
             <Link href="/privacy" className={styles.navLink} onMouseEnter={handleMouseEnter}>Privacy</Link>
           </nav>
-          <Link href="/#signup" className={styles.headerCta}>Join Beta</Link>
+          <Link href="/#beta" className={styles.headerCta}>Join Beta</Link>
 
           <button 
             className={styles.hamburgerBtn}
@@ -102,7 +102,7 @@ export default function Header() {
           <Link href="/privacy" className={styles.mobileNavLink} onClick={() => setIsMobileMenuOpen(false)}>Privacy</Link>
         </nav>
 
-        <Link href="/#signup" className={styles.mobileCta} onClick={() => setIsMobileMenuOpen(false)}>Join Beta</Link>
+        <Link href="/#beta" className={styles.mobileCta} onClick={() => setIsMobileMenuOpen(false)}>Join Beta</Link>
       </div>
     </header>
   );

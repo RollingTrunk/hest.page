@@ -90,6 +90,23 @@
   text-align: left;
 }
 
+.appStoreLink {
+  margin-top: var(--spacing-md);
+  transition: transform var(--transition-normal), opacity var(--transition-fast);
+  display: inline-block;
+}
+
+.appStoreLink:hover {
+  transform: translateY(-1px);
+  opacity: 0.9;
+}
+
+.appStoreLink img {
+  display: block;
+  height: 54px;
+  width: auto;
+}
+
 .heroVisual {
   position: relative;
   display: flex;
@@ -273,4 +290,34 @@
   .featureText {
     font-size: 1rem;
   }
+}
+
+/* Beta Section */
+.betaSection {
+  background: var(--color-bg-secondary);
+  padding: var(--spacing-xxl) var(--spacing-lg);
+  border-radius: var(--radius-xxl);
+  margin: var(--spacing-xxl) auto;
+  max-width: 800px;
+  width: calc(100% - 2 * var(--spacing-lg));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--spacing-lg);
+  scroll-margin-top: 100px;
+}
+
+.betaTitle {
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+}
+
+.betaText {
+  font-size: 1.15rem;
+  color: var(--color-text-secondary);
+  max-width: 500px;
+  line-height: 1.6;
 }

@@ -29,7 +29,19 @@ export default function Home() {
                 tasks, schedules, meal planning, and record tracking in one beautiful, private space.
               </p>
               
-              <ClientBetaForm />
+              <a 
+                href="https://apps.apple.com/us/app/hest-household-manager/id6759582460" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className={styles.appStoreLink}
+              >
+                <Image 
+                  src="/app-store-badge.svg" 
+                  alt="Download on the App Store" 
+                  width={162} 
+                  height={54} 
+                />
+              </a>
             </div>
 
             {/* Right Column - Robot Mascot */}
@@ -150,6 +162,15 @@ export default function Home() {
               </p>
             </div>
           </div>
+        </section>
+
+        {/* Beta Sign-up Section */}
+        <section id="beta" className={styles.betaSection}>
+          <h2 className={styles.betaTitle}>Be the first to know</h2>
+          <p className={styles.betaText}>
+            Join our beta program to get early access to new features and help shape the future of Hest.
+          </p>
+          <ClientBetaForm />
         </section>
       </main>
     </div>
