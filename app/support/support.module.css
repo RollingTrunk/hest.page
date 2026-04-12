@@ -145,6 +145,18 @@
   box-shadow: var(--shadow-md);
 }
 
+.deleteAccountLink {
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color var(--transition-fast);
+}
+
+.deleteAccountLink:hover {
+  color: var(--color-text);
+}
+
 @media (max-width: 768px) {
   .supportContainer {
     padding-top: 100px;

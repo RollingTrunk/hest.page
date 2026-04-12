@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from 'react';
+import Link from 'next/link';
 import styles from './support.module.css';
 
 const faqs = [
@@ -75,6 +76,9 @@ export default function SupportPage() {
           <a href="mailto:hello@rollingtrunk.com" className={styles.mailButton}>
             Contact us by mail
           </a>
+          <Link href="/delete-account" className={styles.deleteAccountLink}>
+            Looking to delete your account?
+          </Link>
         </div>
       </section>
     </main>
