@@ -47,6 +47,7 @@ export default function Footer() {
           <div className={styles.footerColumn}>
             <h4 className={styles.footerColumnTitle}>Resources</h4>
             <nav className={styles.footerNav}>
+              <Link href="/blog" className={styles.footerNavLink}>Blog</Link>
               <Link href="/support" className={styles.footerNavLink}>Support</Link>
               <Link href="/terms" className={styles.footerNavLink}>Terms</Link>
               <Link href="/privacy" className={styles.footerNavLink}>Privacy Policy</Link>

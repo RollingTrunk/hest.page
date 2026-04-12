@@ -62,9 +62,8 @@ export default function Header() {
               }}
             />
             <Link href="/" className={styles.navLink} onMouseEnter={handleMouseEnter}>Home</Link>
+            <Link href="/blog" className={styles.navLink} onMouseEnter={handleMouseEnter}>Blog</Link>
             <Link href="/support" className={styles.navLink} onMouseEnter={handleMouseEnter}>Support</Link>
-            <Link href="/terms" className={styles.navLink} onMouseEnter={handleMouseEnter}>Terms</Link>
-            <Link href="/privacy" className={styles.navLink} onMouseEnter={handleMouseEnter}>Privacy</Link>
           </nav>
           <Link href="/#beta" className={styles.headerCta}>Join Beta</Link>
 
@@ -97,9 +96,8 @@ export default function Header() {
         
         <nav className={styles.mobileNavLinks}>
           <Link href="/" className={styles.mobileNavLink} onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
+          <Link href="/blog" className={styles.mobileNavLink} onClick={() => setIsMobileMenuOpen(false)}>Blog</Link>
           <Link href="/support" className={styles.mobileNavLink} onClick={() => setIsMobileMenuOpen(false)}>Support</Link>
-          <Link href="/terms" className={styles.mobileNavLink} onClick={() => setIsMobileMenuOpen(false)}>Terms</Link>
-          <Link href="/privacy" className={styles.mobileNavLink} onClick={() => setIsMobileMenuOpen(false)}>Privacy</Link>
         </nav>
 
         <Link href="/#beta" className={styles.mobileCta} onClick={() => setIsMobileMenuOpen(false)}>Join Beta</Link>
