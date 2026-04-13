@@ -23,7 +23,7 @@ Key differentiators:
 ## Links
 
 - [Homepage](https://hest.page): Main website with feature overview and App Store download link
-- [App Store](https://apps.apple.com/us/app/hest-household-manager/id6759582460): Download Hest for iOS
+- [App Store](https://apps.apple.com/app/apple-store/id6759582460?pt=128418226&ct=Hest%20LLMS.txt&mt=8): Download Hest for iOS
 - [Privacy Policy](https://hest.page/privacy): How Hest handles user data and privacy
 - [Terms of Service](https://hest.page/terms): Terms and conditions for using Hest
 - [Support](https://hest.page/support): FAQ and contact information

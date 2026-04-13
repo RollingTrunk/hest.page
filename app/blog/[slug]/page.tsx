@@ -183,7 +183,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
             beautiful, shared space.
           </p>
           <a
-            href="https://apps.apple.com/us/app/hest-household-manager/id6759582460"
+            href="https://apps.apple.com/app/apple-store/id6759582460?pt=128418226&ct=Hest%20Website&mt=8"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.ctaButton}
