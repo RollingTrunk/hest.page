@@ -1,0 +1,22 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": [
+          "4A83K3X65U.com.rollingtrunk.hest"
+        ],
+        "components": [
+          {
+            "/": "/recipes/*",
+            "comment": "Open shared recipes in the app"
+          }
+        ]
+      }
+    ]
+  },
+  "webcredentials": {
+    "apps": [
+      "4A83K3X65U.com.rollingtrunk.hest"
+    ]
+  }
+}

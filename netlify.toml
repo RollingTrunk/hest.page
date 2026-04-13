@@ -1,0 +1,7 @@
+# Apple App Site Association
+# Apple requires this file served as application/json with no redirects.
+[[headers]]
+  for = "/.well-known/apple-app-site-association"
+  [headers.values]
+    Content-Type = "application/json"
+    Cache-Control = "max-age=3600"
