@@ -7,15 +7,15 @@ import styles from './support.module.css';
 const faqs = [
   {
     question: "How do I get started with Hest?",
-    answer: "Getting started is easy! Simply sign up for our beta on the home page. Once invited, you'll be able to create your personal dashboard and start organizing your life with our intelligent task management tools."
+    answer: "Getting started is easy! Simply download the app from the App Store or Google Play Store, create an account, and invite your household members to join your shared dashboard."
   },
   {
     question: "Is there a mobile app available?",
-    answer: "We are currently developing mobile apps for both iOS and Android. Beta testers will be the first to gain access to our mobile experience later this year."
+    answer: "Yes! The Hest mobile app is available for free on both iOS and Android. You can download it from the App Store or Google Play Store to keep your household organized on the go."
   },
   {
-    question: "How do I join the beta?",
-    answer: "You can join the waitlist by entering your email in the 'Join Beta' section on our homepage. We are rolling out invites in batches to ensure the best experience for everyone."
+    question: "How much does Hest cost?",
+    answer: "Hest is completely free to download and use for your core household needs. We also offer an optional premium subscription with advanced features for larger households."
   },
   {
     question: "Is my data secure?",

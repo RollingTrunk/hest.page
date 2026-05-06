@@ -90,20 +90,27 @@
   text-align: left;
 }
 
-.appStoreLink {
-  margin-top: var(--spacing-md);
+.storeBadges {
+  display: flex;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-xl);
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.storeLink {
   transition: transform var(--transition-normal), opacity var(--transition-fast);
   display: inline-block;
 }
 
-.appStoreLink:hover {
+.storeLink:hover {
   transform: translateY(-1px);
   opacity: 0.9;
 }
 
-.appStoreLink img {
+.storeLink img {
   display: block;
-  height: 54px;
+  height: 48px;
   width: auto;
 }
 

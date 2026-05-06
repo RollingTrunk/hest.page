@@ -4,7 +4,6 @@ import ClientBetaForm from "@/components/Home/ClientBetaForm";
 import { StarFilledIcon } from "@radix-ui/react-icons";
 import IconOverlay from "@/components/IconOverlay/IconOverlay";
 
-
 export default function Home() {
   return (
     <div className={styles.page}>
@@ -16,7 +15,7 @@ export default function Home() {
             <div className={styles.heroContent}>
               <span className={styles.heroBadge}>
                 <StarFilledIcon className={styles.heroBadgeIcon} />
-                Beta Now Open
+                Available Now
               </span>
               
               <h1 className={styles.heroTitle}>
@@ -29,19 +28,38 @@ export default function Home() {
                 tasks, schedules, meal planning, and record tracking in one beautiful, private space.
               </p>
               
-              <a 
-                href="https://apps.apple.com/app/apple-store/id6759582460?pt=128418226&ct=Hest%20Website&mt=8" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className={styles.appStoreLink}
-              >
-                <Image 
-                  src="/app-store-badge.svg" 
-                  alt="Download on the App Store" 
-                  width={162} 
-                  height={54} 
-                />
-              </a>
+              <div className={styles.storeBadges}>
+                <a 
+                  href="https://apps.apple.com/app/apple-store/id6759582460?pt=128418226&ct=Hest%20Website&mt=8" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className={styles.storeLink}
+                >
+                  <Image 
+                    src="/app-store-badge.svg" 
+                    alt="Download on the App Store" 
+                    width={161} 
+                    height={48} 
+                    unoptimized
+                    style={{ height: '48px', width: 'auto' }}
+                  />
+                </a>
+                <a 
+                  href="https://play.google.com/store/apps/details?id=com.rollingtrunk.hest&referrer=utm_source%3Dhest_website%26utm_medium%3Dweb%26utm_campaign%3DHest%2520Website" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className={styles.storeLink}
+                >
+                  <Image 
+                    src="/google-play-badge.svg" 
+                    alt="Get it on Google Play" 
+                    width={161} 
+                    height={48} 
+                    unoptimized
+                    style={{ height: '48px', width: 'auto' }}
+                  />
+                </a>
+              </div>
             </div>
 
             {/* Right Column - Robot Mascot */}
@@ -164,11 +182,11 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Beta Sign-up Section */}
+        {/* Newsletter Sign-up Section */}
         <section id="beta" className={styles.betaSection}>
-          <h2 className={styles.betaTitle}>Be the first to know</h2>
+          <h2 className={styles.betaTitle}>Stay in the loop</h2>
           <p className={styles.betaText}>
-            Join our beta program to get early access to new features and help shape the future of Hest.
+            Get updates on new features and tips to make the most of Hest for your household.
           </p>
           <ClientBetaForm />
         </section>

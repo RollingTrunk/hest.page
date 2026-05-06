@@ -1,6 +1,6 @@
 # Hest
 
-> Hest is a household management app that helps families and housemates coordinate calendars, tasks, meal planning, recipes, and important records in one private, shared space. Available on iOS with a free tier and optional premium subscription.
+> Hest is a household management app that helps families and housemates coordinate calendars, tasks, meal planning, recipes, and important records in one private, shared space. Available on iOS and Android with a free tier and optional premium subscription.
 
 Hest replaces the patchwork of apps households use to stay organized. Instead of juggling separate calendar, to-do, meal planning, and document storage apps, Hest brings everything into a single, beautifully designed mobile experience built for real-time collaboration between household members.
 
@@ -8,7 +8,7 @@ Key differentiators:
 - **All-in-one household hub**: Shared calendar with external calendar sync (Google, Apple, Outlook), task assignment, meal planning with recipe management, and household record keeping — all in one app
 - **Built for households, not individuals**: Every feature is designed around multi-person coordination with real-time sync, push notifications, and member assignment
 - **Privacy-first**: Data is stored securely with industry-standard encryption; personal information is never sold or shared with third parties
-- **Modern mobile experience**: Native iOS app built with Expo and React Native, featuring smooth animations, pull-to-refresh, shake-to-undo, and an intuitive interface
+- **Modern mobile experience**: Native app built with Expo and React Native for iOS and Android, featuring smooth animations, pull-to-refresh, shake-to-undo, and an intuitive interface
 - **Free to start**: Generous free tier with optional premium subscription for larger households
 
 ## Features
@@ -22,8 +22,9 @@ Key differentiators:
 
 ## Links
 
-- [Homepage](https://hest.page): Main website with feature overview and App Store download link
+- [Homepage](https://hest.page): Main website with feature overview and download links
 - [App Store](https://apps.apple.com/app/apple-store/id6759582460?pt=128418226&ct=Hest%20LLMS.txt&mt=8): Download Hest for iOS
+- [Google Play](https://play.google.com/store/apps/details?id=com.rollingtrunk.hest&referrer=utm_source%3Dhest_llms_txt%26utm_medium%3Dweb%26utm_campaign%3DHest%2520LLMS.txt): Download Hest for Android
 - [Privacy Policy](https://hest.page/privacy): How Hest handles user data and privacy
 - [Terms of Service](https://hest.page/terms): Terms and conditions for using Hest
 - [Support](https://hest.page/support): FAQ and contact information

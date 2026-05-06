@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation';
+import Image from 'next/image';
 import Link from 'next/link';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import remarkGfm from 'remark-gfm';
@@ -113,6 +114,10 @@ const mdxComponents = {
   blockquote: (props: React.HTMLAttributes<HTMLQuoteElement>) => (
     <blockquote className={styles.blockquote} {...props} />
   ),
+  img: (props: React.ImgHTMLAttributes<HTMLImageElement>) => (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img className={styles.postImage} {...props} alt={props.alt || ''} />
+  ),
   table: (props: React.TableHTMLAttributes<HTMLTableElement>) => (
     <div className={styles.tableWrapper}>
       <table className={styles.table} {...props} />
@@ -166,6 +171,19 @@ export default async function BlogPostPage({ params }: { params: Params }) {
           </div>
         </header>
 
+        {post.coverImage && (
+          <div className={styles.coverImageWrapper}>
+            <Image
+              src={post.coverImage}
+              alt=""
+              width={960}
+              height={400}
+              className={styles.coverImage}
+              priority
+            />
+          </div>
+        )}
+
         {/* Rendered MDX content */}
         <div className={styles.content}>
           <MDXRemote
@@ -182,14 +200,24 @@ export default async function BlogPostPage({ params }: { params: Params }) {
             Hest brings your calendar, tasks, meals, and records into one
             beautiful, shared space.
           </p>
-          <a
-            href="https://apps.apple.com/app/apple-store/id6759582460?pt=128418226&ct=Hest%20Website&mt=8"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.ctaButton}
-          >
-            Download Hest — Free on iOS
-          </a>
+          <div className={styles.ctaButtons}>
+            <a
+              href="https://apps.apple.com/app/apple-store/id6759582460?pt=128418226&ct=Hest%20Website&mt=8"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.ctaButton}
+            >
+              Download for iOS
+            </a>
+            <a
+              href="https://play.google.com/store/apps/details?id=com.rollingtrunk.hest&referrer=utm_source%3Dhest_website%26utm_medium%3Dweb%26utm_campaign%3DHest%2520Website"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.ctaButton}
+            >
+              Download for Android
+            </a>
+          </div>
         </aside>
       </article>
     </main>
