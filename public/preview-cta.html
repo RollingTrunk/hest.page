@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Hest — merged CTA + newsletter preview</title>
+<style>
+  :root{ --maroon:#3a0f08; --cream:#fff7f2; --ink:#1a0f0d; --primary:#8b311e;
+    --font-display:"Bricolage Grotesque",system-ui,sans-serif; }
+  *{box-sizing:border-box}
+  body{margin:0;background:#e9e2da;color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;padding:28px;}
+  .label{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#7a7066;margin:24px 0 8px;font-weight:700;}
+
+  .cta{position:relative;overflow:hidden;background:var(--maroon);color:var(--cream);
+    padding:clamp(3rem,8vh,6rem) clamp(1.5rem,5vw,4rem);border-radius:16px;}
+  .cta::before{content:"";position:absolute;left:0;right:0;bottom:0;height:85%;
+    background:radial-gradient(120% 100% at 50% 100%, rgba(245,150,50,.55), rgba(200,70,25,.28) 45%, rgba(120,30,12,.08) 70%, transparent 85%);
+    filter:blur(6px);pointer-events:none;}
+  .grid{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,5vw,4rem);align-items:center;max-width:1100px;margin:0 auto;}
+
+  .inner{display:flex;flex-direction:column;align-items:flex-start;text-align:left;gap:18px;}
+  .flame{width:66px;height:66px;display:flex;align-items:center;justify-content:center;font-size:34px;}
+  h2{font-family:var(--font-display);font-size:clamp(2rem,4vw,3.2rem);line-height:1;letter-spacing:-.035em;margin:0;max-width:16ch;}
+  .sub{font-size:1.05rem;line-height:1.55;opacity:.85;max-width:46ch;margin:0;}
+  .badges{display:flex;gap:12px;margin-top:6px;}
+  .badges span{background:#000;color:#fff;border-radius:10px;padding:10px 16px;font-size:13px;}
+
+  .news{display:flex;flex-direction:column;gap:14px;padding:clamp(1.5rem,3vw,2.25rem);border-radius:24px;
+    background:rgba(255,247,242,.07);border:1px solid rgba(255,247,242,.18);backdrop-filter:blur(6px);text-align:left;}
+  .news h3{font-family:var(--font-display);font-size:clamp(1.4rem,2.6vw,2rem);font-weight:800;letter-spacing:-.03em;margin:0;}
+  .news p{font-size:1rem;line-height:1.55;opacity:.82;margin:0;}
+  form{display:flex;align-items:center;background:var(--cream);border-radius:99px;padding:6px;gap:6px;}
+  input{flex:1;border:none;background:transparent;padding:12px 16px;font-size:15px;outline:none;color:var(--ink);min-width:0;}
+  button{border:none;background:var(--primary);color:#fff;font-weight:600;border-radius:99px;padding:12px 22px;font-size:15px;white-space:nowrap;cursor:pointer;}
+
+  .mframe{max-width:380px;margin:0 auto;}
+  .mframe .grid{grid-template-columns:1fr;gap:28px;}
+  .mframe .inner{align-items:center;text-align:center;}
+  .mframe .badges{justify-content:center;}
+  .mframe .news{text-align:center;align-items:center;}
+</style>
+</head>
+<body>
+  <p class="label">Wide screens — side by side</p>
+  <div class="cta">
+    <div class="grid">
+      <div class="inner">
+        <div class="flame">🔥</div>
+        <h2>Keep your household's fire burning.</h2>
+        <p class="sub">Bring your family onto one calm, private home for everything. Free to download on iOS and Android.</p>
+        <div class="badges"><span>App Store</span><span>Google Play</span></div>
+      </div>
+      <div class="news">
+        <h3>Stay in the loop</h3>
+        <p>Prefer email? Get updates on new features and tips to make the most of Hest for your household.</p>
+        <form onsubmit="return false"><input type="email" placeholder="Enter your email"/><button>Join Beta</button></form>
+      </div>
+    </div>
+  </div>
+
+  <p class="label">Narrow screens — stacked</p>
+  <div class="mframe">
+    <div class="cta">
+      <div class="grid">
+        <div class="inner">
+          <div class="flame">🔥</div>
+          <h2>Keep your household's fire burning.</h2>
+          <p class="sub">One calm, private home for everything. Free on iOS and Android.</p>
+          <div class="badges"><span>App Store</span><span>Google Play</span></div>
+        </div>
+        <div class="news">
+          <h3>Stay in the loop</h3>
+          <p>Prefer email? Get updates on new features and tips.</p>
+          <form onsubmit="return false"><input type="email" placeholder="Enter your email"/><button>Join</button></form>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

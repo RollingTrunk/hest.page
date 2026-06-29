@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Hest — feature carousel preview</title>
+<style>
+  :root{
+    --color-ink:#1a0f0d; --color-sand:#fff7f2; --color-brown-500:#8b311e;
+    --spacing-md:18px; --spacing-lg:28px; --radius-pill:99px;
+    --transition-fast:.18s ease; --transition-normal:.32s ease;
+    --font-display:"Bricolage Grotesque",system-ui,sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--color-sand);color:var(--color-ink);
+    font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px;}
+  .head{padding:64px 0 8px;}
+  .eyebrow{font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--color-brown-500);}
+  h2{font-family:var(--font-display);font-size:2.4rem;letter-spacing:-.02em;margin:.3em 0 .2em;}
+  .sub{max-width:46ch;opacity:.78;line-height:1.5;}
+
+  .featuresSlider{margin-top:28px;}
+  .sliderViewport{overflow:hidden;padding-top:6px;padding-bottom:40px;padding-left:max(24px,calc(50vw - 566px));}
+  .sliderTrack{display:flex;width:max-content;cursor:grab;will-change:transform;touch-action:pan-y;}
+  .dragging{cursor:grabbing;user-select:none;}
+
+  .featureCard{position:relative;display:flex;flex-direction:column;justify-content:flex-end;
+    flex:0 0 clamp(340px,80vw,540px);margin-right:28px;height:460px;border-radius:24px;overflow:hidden;
+    box-shadow:0 14px 30px -16px rgba(26,15,13,.3);transition:transform .32s ease,box-shadow .32s ease;}
+  .featureCard:hover{transform:translateY(-6px);box-shadow:0 24px 46px -20px rgba(26,15,13,.42);}
+  .featureMedia{position:absolute;inset:0;z-index:0;overflow:hidden;}
+  .featureMedia img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease;}
+  .featureCard:hover .featureMedia img{transform:scale(1.05);}
+  .featureBody{position:relative;z-index:1;height:150px;padding:18px;display:flex;flex-direction:column;gap:5px;
+    overflow:hidden;background:rgba(255,247,242,.4);backdrop-filter:blur(13px) saturate(1.3);-webkit-backdrop-filter:blur(13px) saturate(1.3);}
+  .featureChip{display:inline-flex;align-items:center;gap:7px;align-self:flex-start;padding:5px 12px;border-radius:99px;
+    background:rgba(26,15,13,.1);font-size:.72rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;}
+  .featureTitle{font-family:var(--font-display);font-size:1.3rem;font-weight:800;letter-spacing:-.02em;line-height:1.05;margin:2px 0 0;}
+  .featureText{font-size:.95rem;line-height:1.5;opacity:.8;margin:0;}
+
+  .sliderControls{display:flex;align-items:center;gap:28px;margin-top:2px;}
+  .sliderProgress{flex:1;height:4px;border-radius:99px;background:rgba(26,15,13,.1);overflow:hidden;}
+  .sliderProgressFill{height:100%;border-radius:99px;background:var(--color-brown-500);transform-origin:left center;transform:scaleX(.04);}
+  .sliderArrows{display:flex;gap:10px;}
+  .sliderArrow{display:grid;place-items:center;width:46px;height:46px;border-radius:99px;border:1px solid rgba(26,15,13,.15);
+    background:transparent;color:var(--color-ink);cursor:pointer;transition:transform .18s ease,background .18s ease,color .18s ease;}
+  .sliderArrow:hover{transform:translateY(-2px);background:var(--color-brown-500);color:#fff;}
+  .note{max-width:1180px;margin:8px auto 80px;padding:0 24px;opacity:.6;font-size:.85rem;}
+</style>
+</head>
+<body>
+  <div class="wrap head">
+    <span class="eyebrow">What Hest does</span>
+    <h2>One home for everything</h2>
+    <p class="sub">Four tools that work together, so your household runs on one source of truth instead of five group chats.</p>
+  </div>
+
+  <div class="featuresSlider">
+    <div class="sliderViewport" id="vp">
+      <div class="sliderTrack" id="track"></div>
+    </div>
+    <div class="wrap">
+      <div class="sliderControls">
+        <div class="sliderProgress"><div class="sliderProgressFill" id="prog"></div></div>
+        <div class="sliderArrows">
+          <button class="sliderArrow" id="prev" aria-label="Previous"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+          <button class="sliderArrow" id="next" aria-label="Next"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="note">Preview of the snappy transform-recycle carousel (placeholder gradients stand in for the photos). It auto-advances one card every 3.2s, pauses on hover, supports drag + arrows, and only moves a card to the back once it is fully off-screen — so it never pops or jumps.</p>
+
+<script>
+const FEATURES=[
+  {chip:"Calendar",title:"Every schedule, one view",text:"Every schedule, together in one shared view.",c1:"#c98a5a",c2:"#8b311e"},
+  {chip:"Tasks",title:"Chores that share themselves",text:"Assign chores so it's not all on one person.",c1:"#6a8caf",c2:"#3a6b8a"},
+  {chip:"Meals",title:"End the dinner debate",text:"Plan meals and auto-build the grocery list.",c1:"#caa46a",c2:"#7a5a2a"},
+  {chip:"Records",title:"Docs kept safe",text:"Warranties and docs, safe and easy to find.",c1:"#9a7fae",c2:"#54306b"},
+];
+const N=FEATURES.length, SETS=4, AUTO_MS=3200;
+const CARDS=Array.from({length:SETS},()=>FEATURES).flat();
+const track=document.getElementById('track'), prog=document.getElementById('prog');
+
+CARDS.forEach(f=>{
+  const a=document.createElement('article');a.className='featureCard';
+  a.innerHTML=`<div class="featureMedia"><div style="width:100%;height:100%;background:linear-gradient(160deg,${f.c1},${f.c2})"></div></div>
+  <div class="featureBody"><span class="featureChip">${f.chip}</span><h3 class="featureTitle">${f.title}</h3><p class="featureText">${f.text}</p></div>`;
+  track.appendChild(a);
+});
+
+let step=N, translate=0, transitioning=false, paused=false;
+const drag={down:false,lastX:0,moved:false};
+const stride=()=>{const c=track.querySelectorAll('article');return c.length<2?0:c[1].offsetLeft-c[0].offsetLeft;};
+const apply=(smooth)=>{track.style.transition=smooth?'transform .55s cubic-bezier(.22,1,.36,1)':'none';track.style.transform=`translateX(${translate}px)`;};
+function normalize(){const w=stride();if(w<=0)return;while(step>=2*N)step-=N;while(step<N)step+=N;translate=-step*w;}
+function settle(){step=Math.round(-translate/(stride()||1));normalize();apply(false);}
+function advance(dir){if(transitioning)return;const w=stride();if(w<=0)return;step+=dir;translate=-step*w;transitioning=true;apply(true);}
+track.addEventListener('transitionend',e=>{if(e.propertyName!=='transform')return;transitioning=false;settle();});
+normalize();apply(false);
+
+(function tick(){
+  const w=stride();
+  if(w>0){let liveX=translate;try{liveX=new DOMMatrixReadOnly(getComputedStyle(track).transform).m41;}catch(e){}
+    const pos=-liveX/w,p=(((pos%N)+N)%N)/N;prog.style.transform=`scaleX(${Math.max(.04,p)})`;}
+  requestAnimationFrame(tick);
+})();
+
+setInterval(()=>{if(paused||drag.down||transitioning)return;advance(1);},AUTO_MS);
+track.addEventListener('mouseenter',()=>paused=true);
+track.addEventListener('mouseleave',()=>paused=false);
+let resume;const pauseFor=ms=>{paused=true;clearTimeout(resume);resume=setTimeout(()=>paused=false,ms);};
+document.getElementById('next').onclick=()=>{advance(1);pauseFor(4500);};
+document.getElementById('prev').onclick=()=>{advance(-1);pauseFor(4500);};
+track.addEventListener('pointerdown',e=>{if(transitioning)return;drag.down=true;drag.lastX=e.clientX;drag.moved=false;track.classList.add('dragging');});
+track.addEventListener('pointermove',e=>{if(!drag.down)return;const dx=e.clientX-drag.lastX;drag.lastX=e.clientX;if(dx)drag.moved=true;translate+=dx;apply(false);
+  const w=stride();if(w>0){while(-translate/w>=2*N)translate+=N*w;while(-translate/w<N)translate-=N*w;apply(false);}});
+const end=()=>{if(!drag.down)return;drag.down=false;track.classList.remove('dragging');const w=stride();if(w>0&&drag.moved){step=Math.round(-translate/w);translate=-step*w;transitioning=true;apply(true);}pauseFor(4500);};
+track.addEventListener('pointerup',end);track.addEventListener('pointerleave',end);
+</script>
+</body>
+</html>

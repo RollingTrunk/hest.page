@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Audiowide } from "next/font/google";
+import { Geist, Geist_Mono, Bricolage_Grotesque } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Layout/Header";
 import Footer from "@/components/Layout/Footer";
+import SmoothScroll from "@/components/SmoothScroll";
+import ScrollProgress from "@/components/ui/ScrollProgress";
+import HomeSplashCursor from "@/components/HomeSplashCursor";
+import ClickSpark from "@/components/reactbits/ClickSpark";
 import { GoogleAnalytics } from "@next/third-parties/google";
 
 const geistSans = Geist({
@@ -15,10 +19,10 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const audiowide = Audiowide({
-  variable: "--font-audiowide",
+const display = Bricolage_Grotesque({
+  variable: "--font-display",
   subsets: ["latin"],
-  weight: "400",
+  weight: ["600", "700", "800"],
 });
 
 export const metadata: Metadata = {
@@ -41,14 +45,14 @@ export const metadata: Metadata = {
     images: [
       {
         url: "/og-image.png",
-        width: 200,
-        height: 200,
-        alt: "Hest Logo",
+        width: 1200,
+        height: 630,
+        alt: "Hest — your whole household, in one warm place.",
       },
     ],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Hest - Organize your life",
     description: "Hest is the ultimate productivity platform for households.",
     images: ["/og-image.png"],
@@ -81,10 +85,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.className} ${geistSans.variable} ${geistMono.variable} ${audiowide.variable}`}>
-        <Header />
-        {children}
-        <Footer />
+      <body className={`${geistSans.className} ${geistSans.variable} ${geistMono.variable} ${display.variable}`}>
+        <ScrollProgress />
+        <HomeSplashCursor />
+        <ClickSpark sparkColor="#8B311E" sparkRadius={18} sparkCount={8}>
+          <Header />
+          <SmoothScroll>{children}</SmoothScroll>
+          <Footer />
+        </ClickSpark>
         <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID!} />
         <script
           type="application/ld+json"

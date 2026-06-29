@@ -1,0 +1,984 @@
+/* ============================================================
+   Hest landing — bold, color-blocked, DTC ("Loop"-leaning)
+   Display: Bricolage Grotesque. Solid headings + sticker pills.
+   ============================================================ */
+
+.wrap {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding-inline: var(--spacing-lg);
+}
+
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: 7px 16px;
+    border-radius: var(--radius-pill);
+    background: var(--color-ink);
+    color: #fff;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.sectionHead {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto var(--spacing-xl);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.sectionTitle {
+    font-family: var(--font-display), system-ui, sans-serif;
+    font-size: clamp(2.1rem, 4.8vw, 3.5rem);
+    line-height: 1;
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    color: inherit;
+}
+
+.sectionSub {
+    font-size: 1.12rem;
+    line-height: 1.6;
+    color: inherit;
+    opacity: 0.72;
+    max-width: 560px;
+}
+
+/* Accents are now solid — no multi-colored heading text */
+.accent,
+.accentItalic {
+    color: inherit;
+    font-style: normal;
+}
+
+/* Loop-style outlined "sticker" pill around a key word */
+.sticker {
+    display: inline-block;
+    font-style: normal;
+    padding: 0.02em 0.36em 0.1em;
+    border: 0.09em solid currentColor;
+    border-radius: 0.55em;
+    transform: rotate(-2.5deg);
+    line-height: 1;
+}
+
+/* Chunky pill button */
+.pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 15px 26px;
+    border-radius: var(--radius-pill);
+    background: var(--color-ink);
+    color: #fff;
+    font-weight: 700;
+    font-size: 1rem;
+    transition:
+        transform var(--transition-fast),
+        background var(--transition-fast);
+}
+
+.pill:hover {
+    transform: translateY(-2px);
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+    position: relative;
+    /* Visible bottom so the device can extend past the hero and tuck under the
+     marquee bar; horizontal spill is clipped by the body (overflow-x: hidden). */
+    overflow: visible;
+    background: var(--color-cream);
+    color: var(--color-ink);
+    padding-top: clamp(120px, 15vh, 170px);
+    padding-bottom: 0;
+}
+
+.heroGrid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: clamp(2rem, 5vw, 4.5rem);
+    /* Bottom-align both columns to the hero edge (which meets the marquee). */
+    align-items: end;
+}
+
+.heroContent {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-lg);
+    /* Lift the copy off the marquee since the hero itself has no bottom padding. */
+    padding-bottom: clamp(48px, 7vh, 90px);
+}
+
+.heroTitle {
+    font-family: var(--font-display), system-ui, sans-serif;
+    font-size: clamp(2.7rem, 6vw, 5rem);
+    line-height: 0.95;
+    font-weight: 800;
+    letter-spacing: -0.045em;
+    color: var(--color-ink);
+}
+
+/* Masked word for the staggered headline reveal */
+.wordMask {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: top;
+    padding-bottom: 0.16em;
+    margin-bottom: -0.16em;
+}
+
+.heroSub {
+    font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+    line-height: 1.6;
+    color: var(--color-ink);
+    opacity: 0.74;
+    max-width: 440px;
+}
+
+.storeBadges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+    align-items: center;
+}
+
+.storeLink {
+    display: inline-block;
+    transition: transform var(--transition-normal);
+}
+
+.storeLink:hover {
+    transform: translateY(-3px);
+}
+
+.heroProof {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: var(--spacing-xs);
+}
+
+.stars {
+    display: inline-flex;
+    gap: 2px;
+    color: var(--color-brown-500);
+}
+
+.starIcon {
+    width: 17px;
+    height: 17px;
+}
+
+.heroProofText {
+    font-size: 0.95rem;
+    color: var(--color-ink);
+    opacity: 0.8;
+    line-height: 1.4;
+}
+
+.heroProofText b {
+    opacity: 1;
+    font-weight: 700;
+}
+
+/* Device — kept deliberately compact */
+.heroVisual {
+    position: relative;
+    z-index: 0; /* local stacking context so the marquee can paint over the phone */
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+/* Clips the decorative blobs to the visual column now that the hero no longer
+   clips its overflow. */
+.heroBlobClip {
+    position: absolute;
+    inset: 0;
+    overflow: visible; /* show the full organic blob shape, never a straight cut */
+    transform: translateY(10%);
+    z-index: 0;
+    pointer-events: none;
+}
+@media (min-width: 1024px) {
+    .heroBlobClip {
+        transform: translateY(-16%);
+    }
+}
+
+.heroEmbers {
+    position: absolute;
+    inset: -8% -4% 0 -4%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.heroBlob,
+.heroBlob2 {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.heroBlob svg {
+    width: 122%;
+    height: 122%;
+    animation: spinSlow 50s linear infinite;
+}
+
+.heroBlob2 {
+    transform: translate(-14%, -9%);
+}
+
+.heroBlob2 svg {
+    width: 130%;
+    height: 130%;
+    animation: spinSlow 72s linear infinite reverse;
+}
+
+.heroPhone {
+    position: relative;
+    z-index: 1;
+    width: min(74%, 280px);
+}
+
+.heroPhone img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* ============================================================
+   MARQUEE
+   ============================================================ */
+.marquee {
+    position: relative;
+    z-index: 1; /* paints over the hero device that tucks up behind it */
+    background: var(--color-brown-500);
+    color: var(--color-cream);
+    padding: 15px 0;
+    overflow: hidden;
+}
+
+.marqueeTrack {
+    display: flex;
+    width: max-content;
+    animation: marquee 34s linear infinite;
+}
+
+.marqueeItem {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    padding: 0 28px;
+    font-family: var(--font-display), system-ui, sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    white-space: nowrap;
+    letter-spacing: -0.02em;
+}
+
+.marqueeFlame {
+    width: 18px;
+    height: 22px;
+    color: var(--color-brown-200);
+    flex-shrink: 0;
+}
+
+/* ============================================================
+   STATS (bright peach block)
+   ============================================================ */
+.stats {
+    position: relative;
+    z-index: 1; /* covers any device overflow that reaches past the marquee */
+    background: var(--color-peach);
+    color: var(--color-ink);
+    padding-block: clamp(2.75rem, 6vh, 4.5rem);
+}
+
+.statsRow {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(1.25rem, 3vw, 2.5rem);
+}
+
+.statItem {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-left: 18px;
+    border-left: 3px solid var(--color-brown-500);
+}
+
+.statBig {
+    font-family: var(--font-display), system-ui, sans-serif;
+    font-size: clamp(2.3rem, 4vw, 3.2rem);
+    font-weight: 800;
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    color: var(--color-brown-500);
+}
+
+.statLabel {
+    font-size: 0.95rem;
+    line-height: 1.4;
+    color: var(--color-ink);
+    opacity: 0.8;
+}
+
+/* ============================================================
+   SECTION SHELLS
+   ============================================================ */
+.section {
+    position: relative;
+    padding-block: clamp(4rem, 9vh, 7rem);
+    color: var(--color-ink);
+}
+
+.sectionAlt {
+    background: var(--color-sand);
+}
+
+/* Dark block (Why Hest) */
+.sectionDark {
+    background: var(--color-ink);
+    color: var(--color-cream);
+}
+
+.sectionDark .eyebrow {
+    background: var(--color-brown-500);
+    color: var(--color-cream);
+}
+
+/* ============================================================
+   FEATURES — Loop-style product cards, compact imagery
+   ============================================================ */
+/* Feature marquee — continuous, seamless, forward-only (CSS transform). The
+   track holds two identical sets; translating to -50% lands on identical
+   content, so the loop never jumps. Full-bleed via the viewport gutter. */
+.featuresSlider {
+    margin-top: var(--spacing-lg);
+}
+
+.sliderViewport {
+    overflow: hidden;
+    padding-top: 6px;
+    padding-bottom: 40px;
+    padding-left: max(24px, calc(50vw - 566px));
+}
+
+.sliderTrack {
+    display: flex;
+    width: max-content;
+    cursor: grab;
+    will-change: transform;
+    touch-action: pan-y;
+}
+
+.dragging {
+    cursor: grabbing;
+    user-select: none;
+}
+
+.sliderControls {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-lg);
+    margin-top: 2px;
+}
+
+.sliderProgress {
+    flex: 1;
+    height: 4px;
+    border-radius: 99px;
+    background: rgba(26, 15, 13, 0.1);
+    overflow: hidden;
+}
+
+.sliderProgressFill {
+    height: 100%;
+    border-radius: 99px;
+    background: var(--color-brown-500);
+    transform-origin: left center;
+    transform: scaleX(0.04);
+}
+
+.sliderArrows {
+    display: flex;
+    gap: 10px;
+}
+
+.sliderArrow {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: none;
+    background: var(--color-ink);
+    color: var(--color-cream);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition:
+        transform var(--transition-fast),
+        opacity var(--transition-fast),
+        background var(--transition-fast);
+}
+
+.sliderArrow:hover:not(:disabled) {
+    transform: translateY(-2px);
+    background: var(--color-brown-500);
+}
+
+.sliderArrow:disabled {
+    opacity: 0.3;
+    cursor: default;
+}
+
+.featureCard {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    flex: 0 0 clamp(340px, 80vw, 540px);
+    /* Spacing as margin (not flex gap) so the two sets tile to an exact 50% */
+    margin-right: var(--spacing-lg);
+    height: 460px;
+    border-radius: 24px;
+    overflow: hidden;
+    color: var(--color-ink);
+    box-shadow: 0 14px 30px -16px rgba(26, 15, 13, 0.3);
+    transition:
+        transform var(--transition-normal),
+        box-shadow var(--transition-normal);
+}
+
+.featureCard:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 24px 46px -20px rgba(26, 15, 13, 0.42);
+}
+
+.featureMedia {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.featureMedia img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.featureCard:hover .featureMedia img {
+    transform: scale(1.05);
+}
+
+/* Frosted "liquid glass" caption over the bottom strip of the image — kept
+   compact so the photo subject stays visible above it. */
+.featureBody {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    height: 150px;
+    padding: var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    overflow: hidden;
+    background: rgba(255, 247, 242, 0.4);
+    -webkit-backdrop-filter: blur(13px) saturate(1.3);
+    backdrop-filter: blur(13px) saturate(1.3);
+}
+
+.featureChip {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    align-self: flex-start;
+    padding: 5px 12px;
+    border-radius: var(--radius-pill);
+    background: rgba(26, 15, 13, 0.1);
+    color: var(--color-ink);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.featureChip svg {
+    width: 14px;
+    height: 14px;
+}
+
+.featureTitle {
+    font-family: var(--font-display), system-ui, sans-serif;
+    font-size: 1.3rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    margin-top: 2px;
+    color: var(--color-ink);
+}
+
+.featureText {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--color-ink);
+    opacity: 0.8;
+}
+
+/* ============================================================
+   WHY HEST (dark block)
+   ============================================================ */
+.whyGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing-lg);
+}
+
+.whyCard {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-lg);
+    border-radius: 20px;
+    background: rgba(255, 241, 234, 0.05);
+    border: 1px solid rgba(255, 241, 234, 0.1);
+    transition:
+        transform var(--transition-normal),
+        background var(--transition-normal);
+}
+
+.whyCard:hover {
+    transform: translateY(-4px);
+    background: rgba(255, 241, 234, 0.09);
+}
+
+.whyIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 14px;
+    background: var(--color-brown-500);
+    color: var(--color-cream);
+    margin-bottom: var(--spacing-sm);
+}
+
+.whyIcon svg {
+    width: 25px;
+    height: 25px;
+}
+
+.whyTitle {
+    font-family: var(--font-display), system-ui, sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
+.whyText {
+    font-size: 0.95rem;
+    line-height: 1.55;
+    opacity: 0.72;
+}
+
+/* ============================================================
+   REVIEWS
+   ============================================================ */
+.reviewGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-lg);
+    align-items: stretch;
+}
+
+.reviewCard {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    padding: var(--spacing-xl);
+    border-radius: 22px;
+    background: var(--color-cream);
+}
+
+.reviewQuote {
+    font-family: var(--font-display), system-ui, sans-serif;
+    font-size: 1.25rem;
+    line-height: 1.32;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--color-ink);
+    flex: 1;
+}
+
+.reviewMeta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.reviewAvatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--color-brown-500);
+    color: var(--color-cream);
+    font-weight: 700;
+}
+
+.reviewName {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--color-ink);
+}
+
+.reviewRole {
+    font-size: 0.82rem;
+    color: var(--color-ink);
+    opacity: 0.6;
+}
+
+.reviewInvite {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-xl);
+    border-radius: 22px;
+    background: var(--color-brown-500);
+    color: var(--color-cream);
+}
+
+.reviewInviteTitle {
+    font-family: var(--font-display), system-ui, sans-serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+}
+
+.reviewInviteText {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    opacity: 0.85;
+}
+
+.reviewInviteLink {
+    align-self: flex-start;
+    margin-top: var(--spacing-xs);
+    padding: 12px 20px;
+    border-radius: var(--radius-pill);
+    background: var(--color-cream);
+    color: var(--color-ink);
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: transform var(--transition-fast);
+}
+
+.reviewInviteLink:hover {
+    transform: translateY(-2px);
+}
+
+/* ============================================================
+   FAQ
+   ============================================================ */
+.faqLayout {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: start;
+}
+
+.faqIntro {
+    position: sticky;
+    top: 110px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    text-align: left;
+    align-items: flex-start;
+}
+
+.faqList {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.faqItem {
+    border: 2px solid var(--color-ink);
+    border-radius: 18px;
+    background: #fff;
+    overflow: hidden;
+    transition: background var(--transition-normal);
+}
+
+.faqItemOpen {
+    background: var(--color-cream);
+}
+
+.faqQuestion {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-md);
+    padding: var(--spacing-lg);
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font-family: var(--font-display), system-ui, sans-serif;
+    font-size: 1.08rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--color-ink);
+}
+
+.faqToggle {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--color-ink);
+    color: #fff;
+    transition: transform var(--transition-normal);
+}
+
+.faqToggleOpen {
+    transform: rotate(45deg);
+}
+
+.faqAnswer {
+    overflow: hidden;
+}
+
+.faqAnswerInner {
+    padding: 0 var(--spacing-lg) var(--spacing-lg);
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--color-ink);
+    opacity: 0.78;
+}
+
+/* ============================================================
+   FINAL CTA (maroon + Three.js flame)
+   ============================================================ */
+.cta {
+    position: relative;
+    overflow: hidden;
+    padding-block: clamp(5rem, 12vh, 9rem);
+    background: var(--color-maroon-dark);
+    color: var(--color-cream);
+}
+
+.ctaGrid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+}
+
+.ctaInner {
+    position: relative;
+    z-index: 1;
+    padding: 0;
+    text-align: left;
+    background: transparent;
+    color: var(--color-cream);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-lg);
+}
+
+/* Newsletter panel sharing the flame section */
+.ctaNewsletter {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    padding: clamp(1.5rem, 3vw, 2.25rem);
+    border-radius: 24px;
+    background: rgba(255, 247, 242, 0.07);
+    border: 1px solid rgba(255, 247, 242, 0.18);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    text-align: left;
+    scroll-margin-top: 100px;
+}
+
+.ctaNewsletterTitle {
+    font-family: var(--font-display), system-ui, sans-serif;
+    font-size: clamp(1.5rem, 2.6vw, 2rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--color-cream);
+}
+
+.ctaNewsletterText {
+    font-size: 1.02rem;
+    line-height: 1.55;
+    opacity: 0.82;
+    color: var(--color-cream);
+}
+
+.ctaInner > * {
+    position: relative;
+    z-index: 1;
+}
+
+.ctaTitle,
+.ctaSub {
+    text-shadow: 0 2px 18px rgba(26, 8, 4, 0.45);
+}
+
+.ctaFlame {
+    position: relative;
+    width: 76px;
+    height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ctaFlame svg {
+    width: 52px;
+    height: 52px;
+}
+
+.ctaTitle {
+    font-family: var(--font-display), system-ui, sans-serif;
+    font-size: clamp(2.1rem, 4.6vw, 3.4rem);
+    line-height: 1;
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    max-width: 16ch;
+}
+
+.ctaSub {
+    font-size: 1.12rem;
+    line-height: 1.55;
+    opacity: 0.85;
+    max-width: 520px;
+}
+
+.ctaBadges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+    justify-content: flex-start;
+    margin-top: var(--spacing-xs);
+}
+
+.ctaNote {
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+.ctaNote a {
+    color: var(--color-cream);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 980px) {
+    .heroGrid {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: var(--spacing-xl);
+    }
+    .heroContent {
+        align-items: center;
+        /* On mobile the copy isn't adjacent to the marquee (the phone is). */
+        padding-bottom: 0;
+    }
+    /* Text above, phone below (DOM order) — no reordering on mobile. */
+    .heroProof {
+        justify-content: center;
+    }
+    .bento,
+    .whyGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .statsRow {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-xl) var(--spacing-lg);
+    }
+    .reviewGrid {
+        grid-template-columns: 1fr 1fr;
+    }
+    .faqLayout {
+        grid-template-columns: 1fr;
+    }
+    .faqIntro {
+        position: static;
+        text-align: center;
+        align-items: center;
+    }
+    /* Stack the CTA copy above the newsletter on narrower screens */
+    .ctaGrid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-xl);
+    }
+    .ctaInner {
+        align-items: center;
+        text-align: center;
+    }
+    .ctaBadges {
+        justify-content: center;
+    }
+    .ctaNewsletter {
+        text-align: center;
+        align-items: center;
+    }
+}
+
+@media (max-width: 560px) {
+    .bento,
+    .whyGrid,
+    .reviewGrid,
+    .statsRow {
+        grid-template-columns: 1fr;
+    }
+    .heroTitle {
+        font-size: clamp(2.4rem, 11vw, 3.2rem);
+    }
+    .marqueeItem {
+        font-size: 1.1rem;
+    }
+}

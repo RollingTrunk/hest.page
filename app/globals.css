@@ -1,9 +1,39 @@
+/* Tailwind v4 — utilities + theme only (preflight intentionally omitted so the
+   existing CSS-module pages keep their styling during migration). */
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+@theme {
+  --color-ink: #1A0F0D;
+  --color-cream: #FFF1EA;
+  --color-peach: #FFD9C9;
+  --color-sand: #F4EDE6;
+  --color-maroon: #8B311E;
+  --color-maroon-dark: #5E2114;
+  --color-ember: #C9804A;
+}
+
 :root {
   /* Hest Brand Colors */
   --color-primary: #8B311E;
   --color-primary-light: #A64B35;
   --color-primary-dark: #6D2616;
   --color-primary-subtle: rgba(139, 49, 30, 0.08);
+
+  /* Warm Brand Palette (from Hest app design tokens) */
+  --color-brown-600: #1A0F0D;
+  --color-brown-500: #8B311E;
+  --color-brown-400: #A03010;
+  --color-brown-300: #A45848;
+  --color-brown-200: #FFBCA1;
+  --color-brown-100: #FFECE7;
+  --color-cream: #FFF1EA;
+  --color-peach: #FFD9C9;
+  --color-sand: #F4EDE6;
+  --color-ink: #1A0F0D;
+  --color-ember: #C9804A;
+  --color-gold: #E8C88A;
 
   /* Neutral Colors */
   --color-bg: #FFFFFF;
@@ -54,6 +84,66 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Top reading-progress bar (scaleX driven by Motion) */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  background: var(--color-primary);
+  z-index: 300;
+}
+
+/* Trailing cursor ring (translate driven by Motion) */
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 26px;
+  height: 26px;
+  margin: -13px 0 0 -13px;
+  border: 1.5px solid var(--color-primary);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 350;
+  transition: width 0.22s ease, height 0.22s ease, margin 0.22s ease,
+    background-color 0.22s ease, opacity 0.22s ease;
+}
+
+.cursor-ring[data-active="true"] {
+  width: 46px;
+  height: 46px;
+  margin: -23px 0 0 -23px;
+  background: rgba(139, 49, 30, 0.08);
+}
+
+/* Interactive WebGL flame in the final CTA — glows over the maroon */
+.flame-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  border-radius: inherit;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+@media (pointer: coarse) {
+  .cursor-ring {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor-ring {
+    display: none;
+  }
+}
+
 html,
 body {
   max-width: 100vw;
@@ -77,19 +167,26 @@ body.mobile-menu-open {
   width: 100%;
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
+/* Base resets live in the `base` layer so that Tailwind utilities (margin,
+   padding, text-decoration, …) used on the blog/legal pages can override them.
+   Unlayered rules would otherwise beat layered utilities regardless of
+   specificity, which silently killed `mx-auto`, `pt-*`, `px-*` and `underline`
+   on those pages. CSS-module pages are unlayered and keep winning as before. */
+@layer base {
+  * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 
-button {
-  font-family: inherit;
+  button {
+    font-family: inherit;
+  }
 }
 
 /* Utility Classes */
@@ -127,5 +224,63 @@ button {
   }
   50% {
     opacity: 0.7;
+  }
+}
+
+/* Soft ember glow for hero / CTA flame accents */
+@keyframes emberGlow {
+  0%, 100% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.06);
+  }
+}
+
+@keyframes floatY {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes spinSlow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
   }
 }

@@ -1,195 +1,26 @@
-import Image from "next/image";
 import styles from "./page.module.css";
-import ClientBetaForm from "@/components/Home/ClientBetaForm";
-import { StarFilledIcon } from "@radix-ui/react-icons";
-import IconOverlay from "@/components/IconOverlay/IconOverlay";
+import Hero from "@/components/Home/Hero";
+import Marquee from "@/components/Home/Marquee";
+import Stats from "@/components/Home/Stats";
+import Features from "@/components/Home/Features";
+import WhyHest from "@/components/Home/WhyHest";
+import Reviews from "@/components/Home/Reviews";
+import Faq from "@/components/Home/Faq";
+import FinalCta from "@/components/Home/FinalCta";
 
 export default function Home() {
   return (
     <div className={styles.page}>
       <main className={styles.main}>
-        {/* Hero Section - Boxed layout inspired by RocketMoney */}
-        <section className={`${styles.section} ${styles.hero}`}>
-          <div className={styles.heroContainer}>
-            {/* Left Column - Content */}
-            <div className={styles.heroContent}>
-              <span className={styles.heroBadge}>
-                <StarFilledIcon className={styles.heroBadgeIcon} />
-                Available Now
-              </span>
-              
-              <h1 className={styles.heroTitle}>
-                Organize your life with{" "}
-                <span className={styles.heroTitleAccent}>Hest.</span>
-              </h1>
-              
-              <p className={styles.heroSubtitle}>
-                The ultimate productivity platform for households. Effortlessly manage 
-                tasks, schedules, meal planning, and record tracking in one beautiful, private space.
-              </p>
-              
-              <div className={styles.storeBadges}>
-                <a 
-                  href="https://apps.apple.com/app/apple-store/id6759582460?pt=128418226&ct=Hest%20Website&mt=8" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className={styles.storeLink}
-                >
-                  <Image 
-                    src="/app-store-badge.svg" 
-                    alt="Download on the App Store" 
-                    width={161} 
-                    height={48} 
-                    unoptimized
-                    style={{ height: '48px', width: 'auto' }}
-                  />
-                </a>
-                <a 
-                  href="https://play.google.com/store/apps/details?id=com.rollingtrunk.hest&referrer=utm_source%3Dhest_website%26utm_medium%3Dweb%26utm_campaign%3DHest%2520Website" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className={styles.storeLink}
-                >
-                  <Image 
-                    src="/google-play-badge.svg" 
-                    alt="Get it on Google Play" 
-                    width={161} 
-                    height={48} 
-                    unoptimized
-                    style={{ height: '48px', width: 'auto' }}
-                  />
-                </a>
-              </div>
-            </div>
-
-            {/* Right Column - Robot Mascot */}
-            <div className={styles.heroVisual}>
-              <div className={styles.screenshotContainer}>
-                <div className={styles.calendarLineArt}>
-                  <Image
-                    src="/hero-calendar.png"
-                    alt="Calendar background"
-                    width={400}
-                    height={400}
-                    style={{ width: '100%', height: 'auto', display: 'block' }}
-                  />
-                </div>
-                <Image 
-                  src="/robot.png" 
-                  alt="Hest Robot Mascot" 
-                  width={400} 
-                  height={400} 
-                  priority
-                  style={{ width: '100%', height: 'auto', display: 'block' }}
-                />
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Features Section - Alternating layout like RocketMoney */}
-        <section className={`${styles.section} ${styles.features}`}>
-          {/* Feature 1: Calendar - Image Left */}
-          <div className={styles.featureRow}>
-            <div className={styles.featureImageWrapper}>
-              <div className={styles.featureImage}>
-                <Image 
-                  src="/feature-calendar-v3.png" 
-                  alt="Calendar planning" 
-                  width={500} 
-                  height={500}
-                  style={{ width: '100%', height: 'auto', display: 'block' }}
-                />
-              </div>
-              <IconOverlay type="calendar" position="right" />
-            </div>
-            <div className={styles.featureContent}>
-              <h3 className={styles.featureTitle}>Manage all your calendars</h3>
-              <p className={styles.featureText}>
-                Import and sync multiple calendars in one place. Whether it&apos;s work, personal, 
-                or household events, see everything at a glance and never miss an important date.
-              </p>
-            </div>
-          </div>
-
-          {/* Feature 2: Tasks - Image Right */}
-          <div className={`${styles.featureRow} ${styles.featureRowReverse}`}>
-            <div className={styles.featureImageWrapper}>
-              <div className={styles.featureImage}>
-                <Image 
-                  src="/feature-tasks-v3.png" 
-                  alt="Household task management" 
-                  width={500} 
-                  height={500}
-                  style={{ width: '100%', height: 'auto', display: 'block' }}
-                />
-              </div>
-              <IconOverlay type="tasks" position="left" />
-            </div>
-            <div className={styles.featureContent}>
-              <h3 className={styles.featureTitle}>Organize household tasks</h3>
-              <p className={styles.featureText}>
-                Create tasks and assign them to household members. Keep everyone accountable 
-                and working together to keep your household running smoothly.
-              </p>
-            </div>
-          </div>
-
-          {/* Feature 3: Meals - Image Left */}
-          <div className={styles.featureRow}>
-            <div className={styles.featureImageWrapper}>
-              <div className={styles.featureImage}>
-                <Image 
-                  src="/feature-meals-v3.png" 
-                  alt="Meal planning" 
-                  width={500} 
-                  height={500}
-                  style={{ width: '100%', height: 'auto', display: 'block' }}
-                />
-              </div>
-              <IconOverlay type="meals" position="right" />
-            </div>
-            <div className={styles.featureContent}>
-              <h3 className={styles.featureTitle}>Plan your meals</h3>
-              <p className={styles.featureText}>
-                Plan your weekly meals with ease. Save time, reduce food waste, 
-                and never wonder what&apos;s for dinner again.
-              </p>
-            </div>
-          </div>
-
-          {/* Feature 4: Records - Image Right */}
-          <div className={`${styles.featureRow} ${styles.featureRowReverse}`}>
-            <div className={styles.featureImageWrapper}>
-              <div className={styles.featureImage}>
-                <Image 
-                  src="/feature-records-v3.png" 
-                  alt="Record keeping" 
-                  width={500} 
-                  height={500}
-                  style={{ width: '100%', height: 'auto', display: 'block' }}
-                />
-              </div>
-              <IconOverlay type="records" position="left" />
-            </div>
-            <div className={styles.featureContent}>
-              <h3 className={styles.featureTitle}>Keep track of records</h3>
-              <p className={styles.featureText}>
-                Store and organize important documents and records. From receipts to 
-                warranties, everything stays accessible and organized.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Newsletter Sign-up Section */}
-        <section id="beta" className={styles.betaSection}>
-          <h2 className={styles.betaTitle}>Stay in the loop</h2>
-          <p className={styles.betaText}>
-            Get updates on new features and tips to make the most of Hest for your household.
-          </p>
-          <ClientBetaForm />
-        </section>
+        <Hero />
+        <Marquee />
+        <Stats />
+        <Features />
+        <WhyHest />
+        <Reviews />
+        <Faq />
+        {/* Final CTA now also hosts the newsletter signup (merged) */}
+        <FinalCta />
       </main>
     </div>
   );
