@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import Image from "next/image";
 import styles from "./landing.module.css";
 import Reveal from "./Reveal";
@@ -67,48 +67,90 @@ export default function Features() {
   const drag = useRef({ down: false, lastX: 0, moved: false });
   const resume = useRef<number | undefined>(undefined);
 
+  // These helpers only read refs/constants, so useCallback([]) gives them a
+  // stable identity — the effect can list them as deps honestly (no disable).
   // Exact per-card stride (width + gap), measured from real layout.
-  const stride = () => {
+  const stride = useCallback(() => {
     const cards = trackRef.current?.querySelectorAll("article");
     if (!cards || cards.length < 2) return 0;
     return (cards[1] as HTMLElement).offsetLeft - (cards[0] as HTMLElement).offsetLeft;
-  };
-  const apply = (smooth: boolean) => {
+  }, []);
+  const apply = useCallback((smooth: boolean) => {
     const el = trackRef.current;
     if (!el) return;
     el.style.transition = smooth
       ? "transform 0.55s cubic-bezier(0.22, 1, 0.36, 1)"
       : "none";
     el.style.transform = `translateX(${translate.current}px)`;
-  };
+  }, []);
   // Keep step within [N, 2N) by shifting whole set-widths — invisible because
   // the content is periodic, and it guarantees buffer cards on both sides.
-  const normalizeStep = () => {
+  const normalizeStep = useCallback(() => {
     const w = stride();
     if (w <= 0) return;
     while (step.current >= 2 * N) step.current -= N;
     while (step.current < N) step.current += N;
     translate.current = -step.current * w;
-  };
-  const advance = (dir: number) => {
-    if (transitioning.current) return;
-    const w = stride();
-    if (w <= 0) return;
-    step.current += dir;
-    translate.current = -step.current * w;
-    transitioning.current = true;
-    apply(true);
-  };
+  }, [stride]);
+  const advance = useCallback(
+    (dir: number) => {
+      if (transitioning.current) return;
+      const w = stride();
+      if (w <= 0) return;
+      step.current += dir;
+      translate.current = -step.current * w;
+      transitioning.current = true;
+      apply(true);
+    },
+    [stride, apply]
+  );
+  const pauseFor = useCallback((ms: number) => {
+    paused.current = true;
+    window.clearTimeout(resume.current);
+    resume.current = window.setTimeout(() => {
+      paused.current = false;
+    }, ms);
+  }, []);
 
   useEffect(() => {
     const el = trackRef.current;
     if (!el) return;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+    // Progress-bar loop — only runs while the carousel is on-screen so we don't
+    // burn a getComputedStyle/DOMMatrix read every frame for an offscreen section.
+    let raf = 0;
+    const tick = () => {
+      const w = stride();
+      if (w > 0 && progRef.current) {
+        let liveX = translate.current;
+        try {
+          liveX = new DOMMatrixReadOnly(getComputedStyle(el).transform).m41;
+        } catch {
+          /* keep target */
+        }
+        const pos = -liveX / w;
+        const p = (((pos % N) + N) % N) / N;
+        progRef.current.style.transform = `scaleX(${Math.max(0.04, p)})`;
+      }
+      raf = requestAnimationFrame(tick);
+    };
+    const startTick = () => {
+      if (!raf) raf = requestAnimationFrame(tick);
+    };
+    const stopTick = () => {
+      if (raf) {
+        cancelAnimationFrame(raf);
+        raf = 0;
+      }
+    };
+
     let visible = true;
     const io = new IntersectionObserver(
       ([e]) => {
         visible = e.isIntersecting;
+        if (visible) startTick();
+        else stopTick();
       },
       { threshold: 0 }
     );
@@ -137,24 +179,6 @@ export default function Features() {
     };
     window.addEventListener("resize", onResize);
 
-    let raf = 0;
-    const tick = () => {
-      const w = stride();
-      if (w > 0 && progRef.current) {
-        let liveX = translate.current;
-        try {
-          liveX = new DOMMatrixReadOnly(getComputedStyle(el).transform).m41;
-        } catch {
-          /* keep target */
-        }
-        const pos = -liveX / w;
-        const p = (((pos % N) + N) % N) / N;
-        progRef.current.style.transform = `scaleX(${Math.max(0.04, p)})`;
-      }
-      raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-
     let timer: number | undefined;
     if (!reduce) {
       timer = window.setInterval(() => {
@@ -168,24 +192,22 @@ export default function Features() {
       io.disconnect();
       el.removeEventListener("transitionend", onEnd);
       window.removeEventListener("resize", onResize);
-      cancelAnimationFrame(raf);
+      stopTick();
       if (timer) window.clearInterval(timer);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const pauseFor = (ms: number) => {
-    paused.current = true;
-    window.clearTimeout(resume.current);
-    resume.current = window.setTimeout(() => {
-      paused.current = false;
-    }, ms);
-  };
+  }, [stride, apply, normalizeStep, advance]);
 
   // Drag uses incremental deltas so mid-drag normalization isn't overwritten.
   const onDown = (e: React.PointerEvent<HTMLDivElement>) => {
     if (transitioning.current) return;
     drag.current = { down: true, lastX: e.clientX, moved: false };
+    // Capture so a fast drag that leaves the track keeps tracking and still
+    // ends on pointerup/cancel.
+    try {
+      e.currentTarget.setPointerCapture(e.pointerId);
+    } catch {
+      /* not supported — pointerleave fallback still ends the drag */
+    }
     trackRef.current?.classList.add(styles.dragging);
   };
   const onMove = (e: React.PointerEvent<HTMLDivElement>) => {

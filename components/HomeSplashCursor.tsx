@@ -10,5 +10,13 @@ import SplashCursor from "./reactbits/SplashCursor";
 export default function HomeSplashCursor() {
   const pathname = usePathname();
   if (pathname !== "/") return null;
-  return <SplashCursor />;
+  // Dialed down from the vendored defaults (radius 0.2, force 6000,
+  // dissipation 3.5) so the trail reads as a subtle accent, not a spotlight.
+  return (
+    <SplashCursor
+      SPLAT_RADIUS={0.13}
+      SPLAT_FORCE={4500}
+      DENSITY_DISSIPATION={4.2}
+    />
+  );
 }

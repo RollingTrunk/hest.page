@@ -29,7 +29,7 @@ function PostCard({ post }: { post: PostMeta }) {
         <p className="mb-[var(--spacing-md)] text-[0.95rem] leading-relaxed text-[var(--color-text-secondary)]">{post.description}</p>
         <div className="flex flex-wrap gap-[var(--spacing-sm)]">
           {post.tags.map((tag) => (
-            <span key={tag} className="inline-block rounded-[var(--radius-pill)] bg-[#8B311E]/[0.08] px-[10px] py-[2px] text-[0.75rem] font-medium tracking-[0.01em] text-[var(--color-primary)]">
+            <span key={tag} className="inline-block rounded-[var(--radius-pill)] bg-[var(--color-primary-subtle)] px-[10px] py-[2px] text-[0.75rem] font-medium tracking-[0.01em] text-[var(--color-primary)]">
               {tag}
             </span>
           ))}

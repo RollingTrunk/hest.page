@@ -21,6 +21,7 @@ export default function StoreBadges() {
           alt="Download on the App Store"
           width={161}
           height={48}
+          loading="eager"
           unoptimized
           style={{ height: "52px", width: "auto" }}
         />

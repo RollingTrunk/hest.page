@@ -9,7 +9,7 @@ Marketing page for Hest app.
 
 ## Running this website
 ```sh
-npm run dev
+pnpm dev
 ```
 
 ## Deployment

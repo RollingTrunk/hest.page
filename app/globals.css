@@ -171,7 +171,9 @@ body.mobile-menu-open {
    padding, text-decoration, …) used on the blog/legal pages can override them.
    Unlayered rules would otherwise beat layered utilities regardless of
    specificity, which silently killed `mx-auto`, `pt-*`, `px-*` and `underline`
-   on those pages. CSS-module pages are unlayered and keep winning as before. */
+   on those pages. CSS-module pages are unlayered and keep winning as before.
+   CONVENTION: keep any new global element / `*` resets inside this `base` layer
+   so they never override Tailwind utilities again. */
 @layer base {
   * {
     box-sizing: border-box;

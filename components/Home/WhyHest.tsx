@@ -67,6 +67,9 @@ export default function WhyHest() {
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.55, ease: EASE, delay: i * 0.08 }}
               >
+                <span className={styles.whyIndex} aria-hidden="true">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
                 <span className={styles.whyIcon}>
                   <Icon size={26} />
                 </span>
